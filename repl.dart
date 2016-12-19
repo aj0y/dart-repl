@@ -4,22 +4,11 @@ import 'dart:async';
 
 import 'code.dart' as code;
 
-main(List<String> arguments) async {
+
+execute(code.Code newCode) async {
 
   final File file = new File('temp.dart');
   var output = file.openWrite();
-
-  var newCode = new code.Code();
-  String line = '';
-  do {
-    stdout.write('dart>');
-    line = stdin.readLineSync();
-
-    if (line != '.') {
-      newCode.analyzeLine(line);
-    }
-
-  } while(line != '.');
 
   output.write(newCode.generateText());
   output.close();
@@ -28,5 +17,33 @@ main(List<String> arguments) async {
   print(pr.exitCode);
   print(pr.stdout);
   print(pr.stderr);
+}
+
+main(List<String> arguments) async {
+
+  var newCode = new code.Code();
+  String line = '';
+  bool notInstantExecute = true;
+  print(' ===============================');
+  print('||          Dart REPL          ||');
+  print(' ===============================');
+  print('type "." to exit \n');
+  do {
+    stdout.write('dart>');
+    line = stdin.readLineSync();
+
+    if (line != '.') {
+      notInstantExecute = newCode.analyzeLine(line);
+    } else {
+      notInstantExecute = true;
+    }
+
+    if (!notInstantExecute) {
+      await execute(newCode);
+    }
+
+  } while(line != '.');
+
+  print('Quit.');
 }
 

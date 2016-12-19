@@ -15,6 +15,9 @@ class Code {
   // generate code
   String text;
 
+  //
+  bool insideFunction = false;
+
   Code() {
     this.imports.add("import 'dart:io'");
   }
@@ -22,14 +25,19 @@ class Code {
   /**
    *
    */
-  void analyzeLine(String line) {
+  bool analyzeLine(String line) {
     lines.add(line);
 
     if(line.startsWith('import ')) {
       this.imports.add(line);
+      return true;
+
     } else if (line.isNotEmpty) {
       this.statements.add(line);
+
+      return this.insideFunction;
     }
+    return true;
   }
 
   /**
