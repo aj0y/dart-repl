@@ -1,7 +1,10 @@
-## Welcome to GitHub Pages
+## Dart REPL
 
-You can use the [editor on GitHub](https://github.com/aj0y/dart-repl/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+REPL hack for the Dart Programming Language.
+Since Dart does not provide an official REPL. This project is meant to be a hack that simulates a REPL.
 
+
+### How to
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ### Markdown
